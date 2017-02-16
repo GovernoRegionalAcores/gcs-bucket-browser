@@ -1,0 +1,71 @@
+/*
+ * Copyright 2012 Google, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+.well {
+  padding: 8px 10px 8px 10px;
+}
+
+.well dl {
+  margin: 0;
+}
+
+.footer {
+  text-align: center;
+}
+
+.bucket-contents{
+  padding: 10px;
+  border-radius:10px;
+  overflow-x:auto;
+  background-color: #f5f5f5;
+}
+
+.file-metadata{
+  width:320px;
+  position:fixed;
+  right:25%;
+  border-radius:10px;
+  overflow-x:auto;
+  background-color: #f5f5f5;
+}
+
+
+li.jstree-leaf > a.jstree-anchor > i.jstree-icon {
+  background-position: -100px -70px;
+}
+
+.dl-horizontal dt {
+  width:110px;
+}
+
+#file-props{
+  padding: 10px;
+}
+
+.dl-horizontal dd {
+    margin-left: 120px;
+}
+
+@media (max-width: 1300px) {
+.file-metadata{
+  right:10%;
+}
+
+@media (max-width: 1000px) {
+.file-metadata{
+  right:0%;
+}
+}
