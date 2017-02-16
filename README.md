@@ -22,12 +22,12 @@ $ composer require google/cloud
 $ composer require league/oauth2-google
 ```
 
+## OAuth 2.0 client
+Rename conf.demo.php to conf.php and fill in with your credentials information from OAuth 2.0 client credentials previously created on [Google Developers APIs](https://console.developers.google.com/project/_/apis/credentials)
+
 ## Running the application using Docker:
 Run the following command in the project directory:
-docker run -d -p 80:80 --name &lt;my-apache-php-app&gt; -v "$PWD":/var/www/html php:7.1-apache
 
-And the web app will be deployed in the host mapped to port 80.
-
-## Deploying authentication
-Rename conf.demo.php to conf.php and fill in with your credentials information with oauth credentials previously created on
-
+```
+$ docker run -d -p 80:80 --name &lt;my-apache-php-app&gt; -v "$PWD":/var/www/html php:7.1-apache
+```
