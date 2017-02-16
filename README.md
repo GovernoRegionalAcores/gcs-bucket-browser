@@ -29,5 +29,5 @@ Rename conf.demo.php to conf.php and fill in with your credentials information f
 Run the following command in the project directory:
 
 ```
-$ docker run -d -p 80:80 --name &lt;my-apache-php-app&gt; -v "$PWD":/var/www/html php:7.1-apache
+$ docker run -d -p 80:80 --name my-apache-php-app -v "$PWD":/var/www/html php:7.1-apache
 ```
