@@ -54,6 +54,7 @@ $('#jstree-container').on("select_node.jstree", function (e, data) {
 });
 
 function fill_metadata(data) {
+    console.log(data);
     var dlstr;
     if (typeof data.error !== 'undefined') {
 	dlstr = '<dl  class="dl-horizontal">Error code '+data.error.code+' - '+data.error.message+'</dl>';
@@ -63,7 +64,8 @@ function fill_metadata(data) {
     	dlstr += '<dt>MD5</dt><dd>' + data.md5Hash + '</dd>';
     	dlstr += '<dt>Size</dt><dd>' + bytesToSize(data.size, 2) + '</dd>';
     	dlstr += '<dt>Created</dt><dd>' + data.timeCreated + '</dd>';
-    	dlstr += '<dt><a class="download" id="'+data.name+'"href="#">Download File</a></dt><dd></dd>';
+    	dlstr += '<dt><a class="download" id="'+data.name+'"href="#">Download</a></dt><dd></dd>';
+	dlstr += '<dt><a class="delete" id="'+data.name+'"href="#">Delete</a></dt><dd></dd>';
     	dlstr += '</dl><br/>';
     }
     $('#file-props').html(dlstr);
@@ -71,6 +73,34 @@ function fill_metadata(data) {
 
     $( ".download" ).click(function() {
 	window.location.href = '/api.php?downloadObject=true&object='+$(this).attr('id');
+    });
+
+    $( ".delete" ).click(function() {
+	var objectID = $(this).attr('id');
+	swal({
+	  title: "Delete Object",
+	  text: "Are you sure you want to delete this object? This action is permanent if versioning is disabled for this bucket",
+	  type: "warning",
+	  showCancelButton: true,
+	  cancelButtonText: "No, cancel this action",
+	  confirmButtonText: "Yes, I'm sure"
+	},
+	function(isConfirm) {
+        if (isConfirm) {
+		console.log('is confirmed');
+            $.ajax({
+		url: '/api.php?deleteObject=true&object='+objectID,
+		dataType: 'json',
+		success: function(data, textStatus, xhr) {
+		  $('#jstree-container').jstree(true).refresh();
+		}
+            });
+        } else {
+            swal("Cancelled", "Your imaginary file is safe :)", "error");
+        }
+    });
+	/*
+	*/
     });
 }
 
