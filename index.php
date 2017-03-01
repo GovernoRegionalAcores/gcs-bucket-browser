@@ -8,7 +8,9 @@ require 'bootstrap.php';
     <link href="js/theme/style.css" rel="stylesheet" media="screen">
     <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
     <link href="css/style.css" rel="stylesheet" media="screen">
+    <link href="sweetalert/dist/sweetalert.css" rel="stylesheet" type="text/css">
 
+    <script type="text/javascript" src="sweetalert/dist/sweetalert.min.js"></script>
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
     <script type="text/javascript" src="js/jquery.jstree.js"></script>
     <script type="text/javascript" src="js/main.js"></script>
