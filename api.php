@@ -2,13 +2,21 @@
 require 'bootstrap.php';
 
 if($_GET['listObjects'] == true && $_GET['items'] == true && isset($_GET['prefix'])){
-	$listObjects = $restConnection->listObjects(array("bucket"=>DEFAULT_BUCKET, "maxResults"=>"5000", "delimiter"=>"/", "prefix"=>$_GET['prefix']));
+	$argsArray = array("bucket"=>DEFAULT_BUCKET, "maxResults"=>"5000", "delimiter"=>"/", "prefix"=>$_GET['prefix']);
+	if(SHOW_DELETED_ITEMS):
+		$argsArray['versions'] = true;
+	endif;
+	$listObjects = $restConnection->listObjects($argsArray);
 	$jsTreeObjects = convertGcsToJstree(array('listObjects'=>$listObjects));
 	echo json_encode($jsTreeObjects);
   	exit;
 }
 if($_GET['listObjects'] == true && $_GET['items'] == true){
-	$listObjects = $restConnection->listObjects(array("bucket"=>DEFAULT_BUCKET, "delimiter"=>"/"));
+	$argsArray = array("bucket"=>DEFAULT_BUCKET, "delimiter"=>"/");
+	if(SHOW_DELETED_ITEMS):
+		$argsArray['versions'] = true;
+	endif;
+	$listObjects = $restConnection->listObjects($argsArray);
 	echo json_encode(convertGcsToJstree(array('listObjects'=>$listObjects)));
   	exit;
 }
@@ -62,6 +70,7 @@ function convertGcsToJstree($args){
 	if(isset($listObjects['items'])){
 		foreach($listObjects['items'] as $object){
 			$jsonObj = $object;
+			$jsonObj['type'] = isset($object['timeDeleted']) ? 'deleted' : 'normal';
 			$jsonObj['li_attr'] = array('gcs_id' => $object['name']);
 			$jsonObj['text'] = jsTreeDisplayName($jsonObj['name']);
 			$jsTreeObjects[] = $jsonObj;

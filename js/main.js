@@ -3,8 +3,17 @@ $(function() {
     var metadata_xhr = null;
 
 $('#jstree-container').jstree({
-'core' : {
-  'themes' : {
+  'plugins' : ['types'],
+    "types" : {
+      "deleted" : {
+        "icon" : "icondeleted"
+      },
+      "normal" : {
+        "icon" : "iconnormal"
+      }
+    },
+  'core' : {
+    'themes' : {
 	'dots':false
   },
   'data' : {
@@ -64,7 +73,6 @@ function fill_metadata(data) {
 	window.location.href = '/api.php?downloadObject=true&object='+$(this).attr('id');
     });
 }
-
 
 
 function bytesToSize(bytes, precision){  

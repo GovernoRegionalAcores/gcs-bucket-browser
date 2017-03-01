@@ -45,6 +45,12 @@
 
 li.jstree-leaf > a.jstree-anchor > i.jstree-icon {
   background-position: -100px -70px;
+  background-image: url("../js/theme/32px2.png");
+}
+
+li.jstree-leaf > a.jstree-anchor > i.jstree-icon.icondeleted{
+  background-position: -132px -70px;
+  background-image: url("../js/theme/32px2.png");
 }
 
 .dl-horizontal dt {
